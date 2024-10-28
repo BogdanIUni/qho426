@@ -1,0 +1,10 @@
+print("Calculating the sum of the first 100 numbers...")
+
+number = 0
+total = 0
+
+while number <= 100:
+    total = total + number
+    number += 1
+
+print(f"...Done! The answer is {total}")
