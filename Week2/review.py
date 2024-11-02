@@ -8,15 +8,15 @@ if adv == "adventure":
 
     for x in location:
         print(x, end=" ")
-    chosen_loc = input()
+    chosen_loc = str(input())
 
     if chosen_loc == "Castle" or "castle":
         print("You are walking towards an old castle that is said to be the home of the famous Dracula.\nDo you want to continue towards the castle?[Yes/No]")
         contiune_castle = input()
 
-        if contiune_castle == "Yes" or "yes":
+        if contiune_castle == "Yes":
             print("You are walking towards the castle, a dark shadow appears in front of you and you feel a chill going down your spine...\nIn a flash ,the shadow comes behind you, and the next thing that you feel is your blood being sucked out of your body..\nYOU DIED!")
-        elif contiune_castle == "No" or "no":
+        elif contiune_castle == "No":
             print("You decide that the castle is too dangerous and you turn around, walking back to your uneventful life.\nWho knows, maybe your gut feeling kept you alive...")
         else:
             print("That is not a valid answer. Type Yes or No")
@@ -24,5 +24,5 @@ if adv == "adventure":
     if chosen_loc == "Swamp":
         print("You are walking towards a murky, foggy and smelly.. Do you want to contiune?")
 
-else:
-    print("That is not a valid location.")
+    else:
+        print("That is not a valid location.")
