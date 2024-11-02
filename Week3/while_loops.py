@@ -1,4 +1,4 @@
-print("How many appels should I remove")
+print("How many apples should I remove")
 apples = int(input())
 
 removed_apples = 0
