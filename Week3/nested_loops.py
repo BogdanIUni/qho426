@@ -5,6 +5,7 @@ columns = int(input())
 
 print("Here I go:")
 
-for i in range(0, columns):
-    for l in range(row, 0):
-        print(f":-)")
+for i in range(row):
+    for l in range(columns):
+        print(f":-)", end="")
+    print()
