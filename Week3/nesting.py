@@ -3,8 +3,12 @@ sequence = input()
 
 print("Enter your character used in the sequence above")
 marker = input()
+
 dashes = "-"
 
 for i in sequence:
-    for count in range(sequence.count(dashes)):
-        print(f"The distance between the markers is total")
+    count = sequence.count(marker)
+
+    if i == marker:
+        print(f"The distance between the markers is {sequence.count(dashes, len(marker))}")
+        break
