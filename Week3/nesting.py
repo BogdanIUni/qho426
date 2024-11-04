@@ -7,13 +7,13 @@ marker = input()
 mposition1 = -1
 mposition2 = -1
 
-for i in range (0, len(sequence), 1):
-    letter = sequence[i]
+for position in range (0, len(sequence), 1):
+    letter = sequence[position]
 
     if letter == marker:
         if mposition1 == -1:
-            mposition1 = i
+            mposition1 = position
         else:
-            mposition2 = i
+            mposition2 = position
 
-print(f"The distance between the markers is {mposition2 - mposition1}.")
+print(f"The distance between the markers is {mposition2 - mposition1 - 1}.")
