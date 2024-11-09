@@ -1,4 +1,4 @@
-def number():
+def add():
     count = 0
     print("Please enter a number:")
     user_number = int(input())
@@ -8,4 +8,4 @@ def number():
     count = user_number + user_number2
     print(f"Your number is {count}")
 
-number()
+add()
