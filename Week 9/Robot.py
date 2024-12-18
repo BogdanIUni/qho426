@@ -7,9 +7,18 @@ class Robot:
         self.age = 0
         self.energy = Robot.MAX_ENERGY
 
-    def display(self):
-        print(f"I am {self.name} and my age is {self.age}")
+    #Method 1
+    #def display(self):
+        #print(f"I am {self.name} and my age is {self.age}")
+
+    #Method 2
+    #def __repr__(self):
+        #return f'robot(name={self.name}, age={self.age})'
+
+    #Method 3
+    def __str__(self):
+        return f'Robot {self.name} is {self.age} years old.'
 
 if __name__ == "__main__":
     robot = Robot()
-    robot.display()
+    print(robot)
