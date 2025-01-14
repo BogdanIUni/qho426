@@ -82,6 +82,7 @@ def park_and_year():
     with open("data/disneyland_reviews.csv") as file:
 
         csv_reader = csv.reader(file)
+        next(csv_reader)
         rows = list(csv_reader)
 
         #Takes user input
@@ -110,8 +111,14 @@ def park_and_year():
 
             print(f"The average rating for the year {year} in the park {park_name} is {sum(result)/len(result)}")
             print("\nPress X to return to the Main Menu or Any Other Key to return to the previous menu")
-        else:
-            print("This location or year is not on the list")
+        elif park_name not in valid_park:
+            print("This location is not on the list")
+        elif year not in year_and_month:
+            print("This year is not on the list")
+
+        year1 = csv_reader[2].split('-')[0]
+        print(year1)
+park_and_year()
 
 def avg_score():
     with open("data/disneyland_reviews.csv") as file:
@@ -119,29 +126,30 @@ def avg_score():
         next(csv_reader)
         rows = list(csv_reader)
 
-    x = {}
-    sub_dict = {}
-    result = {}
+        x = {}
+        sub_dict = {}
+        result = {}
 
-    for row in rows:
-        if row[4] not in x:
-            x[row[4]] = {}
-        if row[3] not in x[row[4]]:
-            x[row[4]][row[3]] = []
+        for row in rows:
+            if row[4] not in x:
+                x[row[4]] = {}
+            if row[3] not in x[row[4]]:
+                x[row[4]][row[3]] = []
 
-        x[row[4]][row[3]].append(row[1])
+            x[row[4]][row[3]].append(row[1])
 
-    for row[4], countries in x.items():
-        for row[3], score in countries.items():
-            for i in range(len(score)):
-                score[i] = int(score[i])
-            average_score = sum(score) / len(score)
-            sub_dict[row[4], row[3]] = average_score
-            #top = dict(sorted(sub_dict.items(), key=lambda x: x[1], reverse=True))
-    #for i in list(top.items()):
-        #result[i[0]] = i[1]
-    print(sub_dict)
-avg_score()
+        for row[4], countries in x.items():
+            for row[3], score in countries.items():
+                for i in range(len(score)):
+                    score[i] = int(score[i])
+                average_score = sum(score) / len(score)
+                sub_dict[row[4], row[3]] = average_score
+                #top = dict(sorted(sub_dict.items(), key=lambda x: x[1], reverse=True))
+        #for i in list(top.items()):
+            #result[i[0]] = i[1]
+
+        print(sub_dict)
+#avg_score()
 
 def export():
     with open("data/disneyland_reviews.csv") as file:
