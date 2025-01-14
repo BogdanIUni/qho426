@@ -2,8 +2,6 @@
 This module is responsible for visualising the data using Matplotlib.
 Any visualisations should be generated via functions in this module.
 """
-from typing import Dict
-
 import matplotlib.pyplot as plt
 import csv
 
