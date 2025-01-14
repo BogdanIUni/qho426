@@ -119,27 +119,27 @@ def avg_score():
         next(csv_reader)
         rows = list(csv_reader)
 
-    main_dictionary = {}
+    x = {}
     sub_dict = {}
     result = {}
 
     for row in rows:
-        if row[4] not in main_dictionary:
-            main_dictionary[row[4]] = {}
-        if row[3] not in main_dictionary[row[4]]:
-            main_dictionary[row[4]][row[3]] = []
+        if row[4] not in x:
+            x[row[4]] = {}
+        if row[3] not in x[row[4]]:
+            x[row[4]][row[3]] = []
 
-        main_dictionary[row[4]][row[3]].append(row[1])
+        x[row[4]][row[3]].append(row[1])
 
-    for row[4], countries in main_dictionary.items():
+    for row[4], countries in x.items():
         for row[3], score in countries.items():
             for i in range(len(score)):
                 score[i] = int(score[i])
-            avg_score = sum(score) / len(score)
-            sub_dict[row[4], row[3]] = avg_score
-            top = dict(sorted(sub_dict.items(), key=lambda x: x[1], reverse=True))
-    for i in list(top.items()):
-        result[i[0]] = i[1]
+            average_score = sum(score) / len(score)
+            sub_dict[row[4], row[3]] = average_score
+            #top = dict(sorted(sub_dict.items(), key=lambda x: x[1], reverse=True))
+    #for i in list(top.items()):
+        #result[i[0]] = i[1]
     print(sub_dict)
 avg_score()
 
