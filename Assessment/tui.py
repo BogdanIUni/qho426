@@ -65,12 +65,12 @@ def submenu_b():
         top10_per_park()
 def submenu_c():
     sub_menu_input = input()
-    #if sub_menu_input in ["A", "a"]:
-
-    #if sub_menu_input in ["B", "b"]:
-
-    #if sub_menu_input in ["C", "c"]:
-
+    if sub_menu_input in ["A", "a"]:
+        export_txt("data/", "exported_data", "txt")
+    if sub_menu_input in ["B", "b"]:
+        export_txt("data/", "exported_data", "csv")
+    if sub_menu_input in ["C", "c"]:
+        export_txt("data/", "exported_data", "json")
 def mainmenu():
     title_func()
 

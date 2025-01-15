@@ -231,15 +231,12 @@ def export():
 def export_txt(folder,name,extension,count=1):
     export()
 
-    exported_data = f"{folder}{name}({count}).{extension}"
-
     try:
-        with open(exported_data, "x") as txt:
+        with open(f"{folder}{name}({count}).{extension}", "x") as txt:
             txt.write(info)
     except FileExistsError:
-        return export_txt(folder, name, extension, count + 1)
+        return export_txt(folder ,name ,extension ,count + 1)
 
-export_txt("data/","exported_data", "txt")
 #avg_score()
 #park_and_year()
 #park_and_loc()
