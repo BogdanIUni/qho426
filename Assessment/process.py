@@ -5,6 +5,8 @@ It is likely that most sections will require functions to be placed in this modu
 """
 
 import csv
+
+from Week2.moduo import number
 from tui import *
 
 def reading_data():
@@ -118,7 +120,7 @@ def park_and_year():
 
         year1 = csv_reader[2].split('-')[0]
         print(year1)
-park_and_year()
+#park_and_year()
 
 def avg_score():
     with open("data/disneyland_reviews.csv") as file:
@@ -157,13 +159,9 @@ def export():
         next(csv_reader)
         rows = list(csv_reader)
 
-    review_loc = {""}
-    california_loc = {""}
-    hongkong_loc = {""}
-
-    #paris_loc.remove("")
-    #california_loc.remove("")
-    #hongkong_loc.remove("")
+    paris_loc_num = []
+    california_loc_num = []
+    hongkong_loc_num = []
 
     score_paris = []
     score_california = []
@@ -180,19 +178,24 @@ def export():
         if i[4] == "Disneyland_Paris":
             score_paris.append(i[1])
             count_paris += 1
-            if int(i[1]) >= 3:
+            if int(i[1]) > 3:
                 positive_paris += 1
-
+            elif i[3] not in paris_loc_num:
+                paris_loc_num.append(i[3])
         elif i[4] == "Disneyland_California":
             score_california.append(i[1])
             count_cali += 1
             if int(i[1]) >= 3:
                 positive_cali += 1
+            elif i[3] not in california_loc_num:
+                california_loc_num.append(i[3])
         elif i[4] == "Disneyland_HongKong":
             score_hongkong.append(i[1])
             count_hongkong += 1
             if int(i[1]) >= 3:
                 positive_hongkong += 1
+            elif i[3] not in hongkong_loc_num:
+                hongkong_loc_num.append(i[3])
 
     for p in range(len(score_paris)):
         score_paris[p] = int(score_paris[p])
@@ -201,9 +204,37 @@ def export():
     for h in range(len(score_hongkong)):
         score_hongkong[h] = int(score_hongkong[h])
 
-    print(review_loc)
+    avg_score_paris = sum(score_paris)/len(score_paris)
+    avg_score_cali = sum(score_california)/len(score_california)
+    avg_score_hongkong = sum(score_hongkong)/len(score_hongkong)
 
-#export()
+def export_txt():
+    export()
+
+    txt = open("data/exported_data.txt", "w")
+
+    txt.write(f"""
+    Disneyland_Paris:
+        - Number of reviews: {count_paris}
+        - Number of positive reviews: {positive_paris}
+        - Average score: {avg_score_paris}
+        - Number of countries that reviewed the park: {len(paris_loc_num)}
+    
+    Disneyland_California:
+        - Number of reviews: {count_cali}
+        - Number of positive reviews: {positive_cali}
+        - Average score: {avg_score_california}
+        - Number of countries that reviewed the park: {len(california_loc_num)}
+        
+    Disneyland_Paris:
+        - Number of reviews: {count_hongkong}
+        - Number of positive reviews: {positive_hongkong}
+        - Average score: {avg_score_hongkong}
+        - Number of countries that reviewed the park: {len(hongkong_loc_num)}
+    """)
+
+
+export()
 #avg_score()
 #park_and_year()
 #park_and_loc()
