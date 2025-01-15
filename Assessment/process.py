@@ -5,8 +5,6 @@ It is likely that most sections will require functions to be placed in this modu
 """
 
 import csv
-
-from Week2.moduo import number
 from tui import *
 
 def reading_data():
@@ -159,6 +157,8 @@ def export():
         next(csv_reader)
         rows = list(csv_reader)
 
+    global info
+
     paris_loc_num = []
     california_loc_num = []
     hongkong_loc_num = []
@@ -208,33 +208,38 @@ def export():
     avg_score_cali = sum(score_california)/len(score_california)
     avg_score_hongkong = sum(score_hongkong)/len(score_hongkong)
 
-def export_txt():
+    info = (f"""
+        Disneyland_Paris:
+            - Number of reviews: {count_paris}
+            - Number of positive reviews: {positive_paris}
+            - Average score: {avg_score_paris}
+            - Number of countries that reviewed the park: {len(paris_loc_num)}
+
+        Disneyland_California:
+            - Number of reviews: {count_cali}
+            - Number of positive reviews: {positive_cali}
+            - Average score: {avg_score_cali}
+            - Number of countries that reviewed the park: {len(california_loc_num)}
+
+        Disneyland_Paris:
+            - Number of reviews: {count_hongkong}
+            - Number of positive reviews: {positive_hongkong}
+            - Average score: {avg_score_hongkong}
+            - Number of countries that reviewed the park: {len(hongkong_loc_num)}
+        """)
+
+def export_txt(folder,name,extension,count=1):
     export()
 
-    txt = open("data/exported_data.txt", "w")
+    exported_data = f"{folder}{name}({count}).{extension}"
 
-    txt.write(f"""
-    Disneyland_Paris:
-        - Number of reviews: {count_paris}
-        - Number of positive reviews: {positive_paris}
-        - Average score: {avg_score_paris}
-        - Number of countries that reviewed the park: {len(paris_loc_num)}
-    
-    Disneyland_California:
-        - Number of reviews: {count_cali}
-        - Number of positive reviews: {positive_cali}
-        - Average score: {avg_score_california}
-        - Number of countries that reviewed the park: {len(california_loc_num)}
-        
-    Disneyland_Paris:
-        - Number of reviews: {count_hongkong}
-        - Number of positive reviews: {positive_hongkong}
-        - Average score: {avg_score_hongkong}
-        - Number of countries that reviewed the park: {len(hongkong_loc_num)}
-    """)
+    try:
+        with open(exported_data, "x") as txt:
+            txt.write(info)
+    except FileExistsError:
+        return export_txt(folder, name, extension, count + 1)
 
-
-export()
+export_txt("data/","exported_data", "txt")
 #avg_score()
 #park_and_year()
 #park_and_loc()
