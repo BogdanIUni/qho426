@@ -110,6 +110,7 @@ def mainmenu():
             for c in C_list:
                 print(c)
 
+            submenu_c()
             backtomainmenu()
 
         elif main_menu_input in ["X", "x"]:
