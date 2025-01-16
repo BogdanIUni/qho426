@@ -5,6 +5,8 @@ It is likely that most sections will require functions to be placed in this modu
 """
 
 import csv
+from asyncio import wait_for
+
 from tui import *
 
 def reading_data():
@@ -12,7 +14,6 @@ def reading_data():
 
     with open("data/disneyland_reviews.csv") as file:
         csv_reader = csv.reader(file)
-        #headings = next(csv_reader)
         next(csv_reader)
         for row in csv_reader:
             count += 1
@@ -42,13 +43,13 @@ def specific_park():
                 if row[4] == park_name:
                     result.append(row)
             print(*result, sep= "\n")
-            print("\nPress X to return to the Main Menu or Any Other Key to return to the previous menu")
+            print(end_msg)
         else:
-            print("This location is not on the list")
+            print(wrong_location)
+            specific_park()
 
 def park_and_loc():
     with open("data/disneyland_reviews.csv") as file:
-
         csv_reader = csv.reader(file)
         rows = list(csv_reader)
 
@@ -66,28 +67,28 @@ def park_and_loc():
         #Workflow
         for l in rows:
             valid_location.append(l[3])
-        for p in rows:
-            valid_park.append(p[4])
+            valid_park.append(l[4])
 
         if park_name in valid_park and loc in valid_location:
             for row in rows:
                 if row[4] == park_name and row[3] == loc:
                     result.append(row)
             print(*result, sep= "\n")
-            print("\nPress X to return to the Main Menu or Any Other Key to return to the previous menu")
+            print(end_msg)
         elif park_name not in valid_park:
-            print(f"{park_name} is not a valid park.")
+            print(wrong_location)
+            park_and_loc()
         elif loc not in valid_location:
-            print(f"{loc} is not a valid location")
+            print(wrong_location)
+            park_and_loc()
 
 def park_and_year():
     with open("data/disneyland_reviews.csv") as file:
-
         csv_reader = csv.reader(file)
         next(csv_reader)
         rows = list(csv_reader)
 
-        #Takes user input and asks  v
+        #Takes user input and asks what to input
         park_name = input("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
         year = input("Please enter a year:\n")
 
@@ -112,7 +113,7 @@ def park_and_year():
                 result[i] = int(result[i])
 
             print(f"The average rating for the year {year} in the park {park_name} is {sum(result)/len(result)}")
-            print("\nPress X to return to the Main Menu or Any Other Key to return to the previous menu")
+            print(end_msg)
         elif park_name not in valid_park:
             print("This location is not on the list")
         elif year not in year_and_month:

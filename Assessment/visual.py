@@ -7,8 +7,6 @@ import csv
 
 def mostreviewed_park():
     with open("data/disneyland_reviews.csv") as file:
-
-        # Can do list(file) to read the file
         csv_reader = csv.reader(file)
         next(csv_reader)
         rows = list(csv_reader)
@@ -34,8 +32,6 @@ def mostreviewed_park():
 
 def scores_per_park():
     with open("data/disneyland_reviews.csv") as file:
-
-        # Can do list(file) to read the file
         csv_reader = csv.reader(file)
         next(csv_reader)
         rows = list(csv_reader)

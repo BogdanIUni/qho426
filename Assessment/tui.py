@@ -12,19 +12,27 @@ from time import sleep
 from process import *
 from visual import *
 
+#Menu options as lists
 mmenu_list = ["[A] View Data", "[B] Visualise Data", "[C] Export Data", "[X] Exit"]
 mmenu_valid_options = ["A", "a", "B", "b", "C", "c", "X", "x"]
 A_list = ["[A] View Reviews by Park",  "[B] Number of Reviews by Park and Reviewer Location", "[C] Average Score per year by Park", "[D] Average Score per Park by Reviewer Location", " ", "[X] Back to the Main Menu"]
 B_list = ["[A] Most Reviewed Park", "[B] Average Scores", "[C] Park Ranking by Nationality", "[D] Most Popular Month by Park", " ", "[X] Back to the Main Menu"]
 C_list = ["[A] TXT", "[B] CSV", "[C] JSON", " ", "[X] Press X to return to the Main Menu or Any Other Key to return to the submenu"]
 
+#List of error or post process messages
+end_msg = "\nPress X to return to the Main Menu or Any Other Key to return to the previous menu"
+wrong_location = "This location is not on the list"
+
 def clear():
     sleep(1)
     os.system('cls')
 
 def backtomainmenu():
-    clear()
-    mainmenu()
+    sub_menu_input = input()
+
+    if sub_menu_input in ["X", "x"]:
+        clear()
+        mainmenu()
 
 def title_workflow():
     title_length = 0
@@ -49,8 +57,8 @@ def submenu_a():
         park_and_year()
     elif sub_menu_input in ["D", "d"]:
         avg_score()
-    elif sub_menu_input in ["X", "x"]:
-        backtomainmenu()
+    #elif sub_menu_input in ["X", "x"]:
+        #backtomainmenu()
     else:
         print("Invalid option")
         submenu_a()
@@ -107,6 +115,7 @@ def mainmenu():
                 print(a)
 
             submenu_a()
+            backtomainmenu()
 
         elif main_menu_input in ["B", "b"]:
             print("You have chosen the option B - Visualise data\n")
