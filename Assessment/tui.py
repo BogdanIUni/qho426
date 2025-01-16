@@ -142,5 +142,3 @@ def mainmenu():
         print("The menu that you have selected doesn't exist. Please select one of the options above.")
         main_menu_input = input()
         loop1()
-
-#mainmenu()
