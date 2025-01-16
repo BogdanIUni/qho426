@@ -223,7 +223,7 @@ def export():
             - Number of countries that reviewed the park: {len(hongkong_loc_num)}
         """)
 
-def export_final(extension, count=1):
+def export_final(extension, count=0):
     export()
 
     try:

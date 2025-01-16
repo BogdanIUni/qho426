@@ -23,8 +23,7 @@ def clear():
     os.system('cls')
 
 def backtomainmenu():
-    sleep(1)
-    os.system('cls')
+    clear()
     mainmenu()
 
 def title_workflow():
@@ -43,7 +42,6 @@ def title_func():
 def submenu_a():
     sub_menu_input = input()
     if sub_menu_input in ["A", "a"]:
-        #print("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]")
         specific_park()
     elif sub_menu_input in ["B", "b"]:
         park_and_loc()
