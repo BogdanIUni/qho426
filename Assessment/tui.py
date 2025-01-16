@@ -66,7 +66,7 @@ def submenu_b():
     elif sub_menu_input in ["C", "c"]:
         top10_per_park()
     #elif sub_menu_input in ["D", "d"]:
-
+        #
     elif sub_menu_input in ["X", "x"]:
         backtomainmenu()
     else:
@@ -76,13 +76,13 @@ def submenu_b():
 def submenu_c():
     sub_menu_input = input()
     if sub_menu_input in ["A", "a"]:
-        export_txt("txt")
+        export_final("txt")
         print("Data exported successfully as a TXT file in the data folder")
     elif sub_menu_input in ["B", "b"]:
-        export_txt("csv")
+        export_final("csv")
         print("Data exported successfully as a CSV file in the data folder")
     elif sub_menu_input in ["C", "c"]:
-        export_txt("json")
+        export_final("json")
         print("Data exported successfully as a JSON file in the data folder")
     elif sub_menu_input in ["X", "x"]:
         backtomainmenu()

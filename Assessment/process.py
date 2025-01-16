@@ -223,11 +223,11 @@ def export():
             - Number of countries that reviewed the park: {len(hongkong_loc_num)}
         """)
 
-def export_txt(extension,count=1):
+def export_final(extension, count=1):
     export()
 
     try:
         with open(f"data/exported_data({count}).{extension}", "x") as txt:
             txt.write(info)
     except FileExistsError:
-        return export_txt(extension ,count + 1)
+        return export_final(extension, count + 1)
