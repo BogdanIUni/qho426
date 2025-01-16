@@ -22,12 +22,14 @@ def reading_data():
 def specific_park():
     with open("data/disneyland_reviews.csv") as file:
 
-        # Can do list(file) to read the file
+        # Reading the csv file after opening it and creating a variable that reads the csv file as a list
         csv_reader = csv.reader(file)
         rows = list(csv_reader)
 
+        #Takes user input
         park_name = input("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
 
+        #Lists that hold the values appended from the csv file
         result = []
         valid_park = []
 
@@ -54,7 +56,7 @@ def park_and_loc():
         park_name = input("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
         loc = input("From what location should the reviewer be ?\n")
 
-        # New list that will
+        # New list that will hold the final results
         result = []
 
         #The list of parks and locations that are filled with the content inside the Excel file by the loops
@@ -85,11 +87,11 @@ def park_and_year():
         next(csv_reader)
         rows = list(csv_reader)
 
-        #Takes user input
+        #Takes user input and asks  v
         park_name = input("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
         year = input("Please enter a year:\n")
 
-        # New list that will
+        # New list that will hold the final results
         result = []
 
         #The list of parks and locations that are filled with the content inside the Excel file by the loops

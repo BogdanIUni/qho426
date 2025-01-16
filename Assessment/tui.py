@@ -90,7 +90,6 @@ def submenu_c():
 
 def mainmenu():
     title_func()
-
     reading_data()
 
     print("\n\nPlease enter the data that corresponds with your desired menu choice:")
@@ -98,7 +97,7 @@ def mainmenu():
         print(menu)
     main_menu_input = input()
 
-    def menu1():
+    def sub_menus():
         if main_menu_input in ["A", "a"]:
             print("You have chosen the option A - View Data\n")
             clear()
@@ -136,7 +135,7 @@ def mainmenu():
 
     def loop1():
         while main_menu_input in mmenu_valid_options:
-            menu1()
+            sub_menus()
     loop1()
     while main_menu_input not in mmenu_valid_options:
         print("The menu that you have selected doesn't exist. Please select one of the options above.")
