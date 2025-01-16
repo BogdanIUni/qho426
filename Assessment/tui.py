@@ -48,29 +48,31 @@ def submenu_a():
     if sub_menu_input in ["A", "a"]:
         #print("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]")
         specific_park()
-    if sub_menu_input in ["B", "b"]:
+    elif sub_menu_input in ["B", "b"]:
         park_and_loc()
-    if sub_menu_input in ["C", "c"]:
+    elif sub_menu_input in ["C", "c"]:
         park_and_year()
-    if sub_menu_input in ["D", "d"]:
+    elif sub_menu_input in ["D", "d"]:
         avg_score()
 
 def submenu_b():
     sub_menu_input = input()
     if sub_menu_input in ["A", "a"]:
         mostreviewed_park()
-    if sub_menu_input in ["B", "b"]:
+    elif sub_menu_input in ["B", "b"]:
         scores_per_park()
-    if sub_menu_input in ["C", "c"]:
+    elif sub_menu_input in ["C", "c"]:
         top10_per_park()
+
 def submenu_c():
     sub_menu_input = input()
     if sub_menu_input in ["A", "a"]:
-        export_txt("data/", "exported_data", "txt")
-    if sub_menu_input in ["B", "b"]:
-        export_txt("data/", "exported_data", "csv")
-    if sub_menu_input in ["C", "c"]:
-        export_txt("data/", "exported_data", "json")
+        export_txt("txt")
+    elif sub_menu_input in ["B", "b"]:
+        export_txt("csv")
+    elif sub_menu_input in ["C", "c"]:
+        export_txt("json")
+
 def mainmenu():
     title_func()
 
