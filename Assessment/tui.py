@@ -23,12 +23,9 @@ def clear():
     os.system('cls')
 
 def backtomainmenu():
-    sub_menu_input = input()
-
-    if sub_menu_input in ["X", "x"]:
-        sleep(1)
-        os.system('cls')
-        mainmenu()
+    sleep(1)
+    os.system('cls')
+    mainmenu()
 
 def title_workflow():
     title_length = 0
@@ -54,6 +51,11 @@ def submenu_a():
         park_and_year()
     elif sub_menu_input in ["D", "d"]:
         avg_score()
+    elif sub_menu_input in ["X", "x"]:
+        backtomainmenu()
+    else:
+        print("Invalid option")
+        submenu_a()
 
 def submenu_b():
     sub_menu_input = input()
@@ -63,15 +65,30 @@ def submenu_b():
         scores_per_park()
     elif sub_menu_input in ["C", "c"]:
         top10_per_park()
+    #elif sub_menu_input in ["D", "d"]:
+
+    elif sub_menu_input in ["X", "x"]:
+        backtomainmenu()
+    else:
+        print("Invalid option")
+        submenu_b()
 
 def submenu_c():
     sub_menu_input = input()
     if sub_menu_input in ["A", "a"]:
         export_txt("txt")
+        print("Data exported successfully as a TXT file in the data folder")
     elif sub_menu_input in ["B", "b"]:
         export_txt("csv")
+        print("Data exported successfully as a CSV file in the data folder")
     elif sub_menu_input in ["C", "c"]:
         export_txt("json")
+        print("Data exported successfully as a JSON file in the data folder")
+    elif sub_menu_input in ["X", "x"]:
+        backtomainmenu()
+    else:
+        print("Invalid option")
+        submenu_c()
 
 def mainmenu():
     title_func()
@@ -79,8 +96,8 @@ def mainmenu():
     reading_data()
 
     print("\n\nPlease enter the data that corresponds with your desired menu choice:")
-    for m in mmenu_list:
-        print(m)
+    for menu in mmenu_list:
+        print(menu)
     main_menu_input = input()
 
     def menu1():
@@ -93,7 +110,6 @@ def mainmenu():
                 print(a)
 
             submenu_a()
-            backtomainmenu()
 
         elif main_menu_input in ["B", "b"]:
             print("You have chosen the option B - Visualise data\n")
@@ -103,7 +119,6 @@ def mainmenu():
                 print(b)
 
             submenu_b()
-            backtomainmenu()
 
         elif main_menu_input in ["C", "c"]:
             print("You have chosen the option C - Export Data")
@@ -113,7 +128,6 @@ def mainmenu():
                 print(c)
 
             submenu_c()
-            backtomainmenu()
 
         elif main_menu_input in ["X", "x"]:
             print("You have chosen the option X - Exit\n")
