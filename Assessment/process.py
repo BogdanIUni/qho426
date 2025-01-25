@@ -7,7 +7,7 @@ It is likely that most sections will require functions to be placed in this modu
 import csv
 from asyncio import wait_for
 
-from tui import *
+import tui
 
 def reading_data():
     count = 0
@@ -43,9 +43,10 @@ def specific_park():
                 if row[4] == park_name:
                     result.append(row)
             print(*result, sep= "\n")
-            print(end_msg)
+            print(tui.end_msg)
+            input()
         else:
-            print(wrong_location)
+            print(tui.wrong_location)
             specific_park()
 
 def park_and_loc():
@@ -99,13 +100,23 @@ def park_and_year():
         year_and_month = []
         valid_park = []
 
+        h = []
+
         #Workflow
         for y in rows:
-            year_and_month.append(y[2])
-        for p in rows:
-            valid_park.append(p[4])
+            valid_park.append(y[4])
+            if y[4] is int:
+                year_and_month.append(y[2])
 
-        if park_name in valid_park and year in year_and_month:
+        #for i in range(len(year_and_month)):
+            #year_and_month[i] = int(year_and_month[i])
+
+        for row in csv_reader:
+            only_year = year_and_month
+            year1 = only_year.split('-')[0]
+            h.append(year1)
+
+        if park_name in valid_park and year in h:
             for row in rows:
                 if row[4] == park_name and row[2] == year:
                     result.append(row[1])
@@ -115,12 +126,12 @@ def park_and_year():
             print(f"The average rating for the year {year} in the park {park_name} is {sum(result)/len(result)}")
             print(end_msg)
         elif park_name not in valid_park:
-            print("This location is not on the list")
-        elif year not in year_and_month:
+            print(wrong_location)
+        elif year not in h:
             print("This year is not on the list")
 
-        year1 = csv_reader[2].split('-')[0]
-        print(year1)
+        print(h)
+        print(result)
 #park_and_year()
 
 def avg_score():

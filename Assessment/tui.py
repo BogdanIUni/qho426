@@ -20,7 +20,7 @@ B_list = ["[A] Most Reviewed Park", "[B] Average Scores", "[C] Park Ranking by N
 C_list = ["[A] TXT", "[B] CSV", "[C] JSON", " ", "[X] Press X to return to the Main Menu or Any Other Key to return to the submenu"]
 
 #List of error or post process messages
-end_msg = "\nPress X to return to the Main Menu or Any Other Key to return to the previous menu"
+end_msg = "\nPress X to return to the Main Menu"
 wrong_location = "This location is not on the list"
 
 def clear():
@@ -28,11 +28,8 @@ def clear():
     os.system('cls')
 
 def backtomainmenu():
-    sub_menu_input = input()
-
-    if sub_menu_input in ["X", "x"]:
-        clear()
-        mainmenu()
+    clear()
+    mainmenu()
 
 def title_workflow():
     title_length = 0
@@ -57,8 +54,8 @@ def submenu_a():
         park_and_year()
     elif sub_menu_input in ["D", "d"]:
         avg_score()
-    #elif sub_menu_input in ["X", "x"]:
-        #backtomainmenu()
+    elif sub_menu_input in ["X", "x"]:
+        backtomainmenu()
     else:
         print("Invalid option")
         submenu_a()
