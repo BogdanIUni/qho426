@@ -75,12 +75,13 @@ def park_and_loc():
                 if row[4] == park_name and row[3] == loc:
                     result.append(row)
             print(*result, sep= "\n")
-            print(end_msg)
+            print(tui.end_msg)
+            input()
         elif park_name not in valid_park:
-            print(wrong_location)
+            print(tui.wrong_location)
             park_and_loc()
         elif loc not in valid_location:
-            print(wrong_location)
+            print(tui.wrong_location)
             park_and_loc()
 
 def park_and_year():
@@ -124,14 +125,16 @@ def park_and_year():
                 result[i] = int(result[i])
 
             print(f"The average rating for the year {year} in the park {park_name} is {sum(result)/len(result)}")
-            print(end_msg)
+            print(tui.end_msg)
+            input()
         elif park_name not in valid_park:
-            print(wrong_location)
+            print(tui.wrong_location)
         elif year not in h:
             print("This year is not on the list")
 
         print(h)
         print(result)
+        input()
 #park_and_year()
 
 def avg_score():
@@ -159,6 +162,7 @@ def avg_score():
                 sub_dict[row[4], row[3]] = average_score
 
         print(sub_dict)
+        input()
 
 def export():
     with open("data/disneyland_reviews.csv") as file:
