@@ -6,7 +6,6 @@ It is likely that most sections will require functions to be placed in this modu
 
 import csv
 from asyncio import wait_for
-
 import tui
 
 def reading_data():
@@ -90,10 +89,6 @@ def park_and_year():
         next(csv_reader)
         rows = list(csv_reader)
 
-        #Takes user input and asks what to input
-        park_name = input("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
-        year = input("Please enter a year:\n")
-
         # New list that will hold the final results
         result = []
 
@@ -106,23 +101,22 @@ def park_and_year():
         #Workflow
         for y in rows:
             valid_park.append(y[4])
-            if y[4] is int:
-                year_and_month.append(y[2])
+            year_and_month.append(y[2])
 
-        #for i in range(len(year_and_month)):
-            #year_and_month[i] = int(year_and_month[i])
+        year1 = str(year_and_month)
 
-        for row in csv_reader:
-            only_year = year_and_month
-            year1 = only_year.split('-')[0]
-            h.append(year1)
+        for i in year1:
+            year = i.split("-")
+            h.append(year)
+
+        #Takes user input and asks what to input
+        park_name = input("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
+        year = input("Please enter a year:\n")
 
         if park_name in valid_park and year in h:
             for row in rows:
-                if row[4] == park_name and row[2] == year:
-                    result.append(row[1])
-            for i in range(len(result)):
-                result[i] = int(result[i])
+                if row[4] == park_name and row[2].startswith(str(year)):
+                    result.append(int(row[1]))
 
             print(f"The average rating for the year {year} in the park {park_name} is {sum(result)/len(result)}")
             print(tui.end_msg)
@@ -132,10 +126,7 @@ def park_and_year():
         elif year not in h:
             print("This year is not on the list")
 
-        print(h)
-        print(result)
         input()
-#park_and_year()
 
 def avg_score():
     with open("data/disneyland_reviews.csv") as file:
