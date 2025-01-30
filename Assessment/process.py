@@ -8,6 +8,8 @@ import csv
 from asyncio import wait_for
 import tui
 
+info = ""
+
 def reading_data():
     count = 0
 
@@ -96,7 +98,8 @@ def park_and_year():
         year_and_month = []
         valid_park = []
 
-        h = []
+        years = []
+        months = []
 
         #Workflow
         for y in rows:
@@ -106,14 +109,15 @@ def park_and_year():
         year1 = str(year_and_month)
 
         for i in year1:
-            year = i.split("-")
-            h.append(year)
+            year ,month = i.split("-")
+            months.append(month)
+            years.append(year)
 
         #Takes user input and asks what to input
         park_name = input("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
         year = input("Please enter a year:\n")
 
-        if park_name in valid_park and year in h:
+        if park_name in valid_park and year in years:
             for row in rows:
                 if row[4] == park_name and row[2].startswith(str(year)):
                     result.append(int(row[1]))
@@ -123,7 +127,7 @@ def park_and_year():
             input()
         elif park_name not in valid_park:
             print(tui.wrong_location)
-        elif year not in h:
+        elif year not in years:
             print("This year is not on the list")
 
         input()

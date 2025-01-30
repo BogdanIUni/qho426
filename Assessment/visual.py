@@ -36,30 +36,31 @@ def scores_per_park():
         next(csv_reader)
         rows = list(csv_reader)
 
-        Paris_scores = []
-        California_scores = []
-        Hongkong_scores = []
+        paris_scores = []
+        california_scores = []
+        hongkong_scores = []
 
         for row in rows:
             if row[4] == "Disneyland_Paris":
-                Paris_scores.append(row[1])
+                paris_scores.append(row[1])
             elif row[4] == "Disneyland_California":
-                California_scores.append(row[1])
+                california_scores.append(row[1])
             elif row[4] == "Disneyland_HongKong":
-                Hongkong_scores.append(row[1])
-        for p in range(len(Paris_scores)):
-            Paris_scores[p] = int(Paris_scores[p])
-        for c in range(len(California_scores)):
-            California_scores[c] = int(California_scores[c])
-        for h in range(len(Hongkong_scores)):
-            Hongkong_scores[h] = int(Hongkong_scores[h])
+                hongkong_scores.append(row[1])
 
-        avg_Paris = int(sum(Paris_scores)/len(Paris_scores))
-        avg_California = int(sum(California_scores)/len(California_scores))
-        avg_HongKong = int(sum(Hongkong_scores)/len(Hongkong_scores))
+        for a in range(len(paris_scores)):
+            paris_scores[a] = int(paris_scores[a])
+        for b in range(len(california_scores)):
+            california_scores[b] = int(california_scores[b])
+        for c in range(len(hongkong_scores)):
+            hongkong_scores[c] = int(hongkong_scores[c])
+
+        avg_paris = int(sum(paris_scores)/len(paris_scores))
+        avg_california = int(sum(california_scores)/len(california_scores))
+        avg_hongkong = int(sum(hongkong_scores)/len(hongkong_scores))
 
         x = ["Disneyland_Paris", "Disneyland_California", "Disneyland_HongKong"]
-        y = [avg_Paris, avg_California, avg_HongKong]
+        y = [avg_paris, avg_california, avg_hongkong]
 
         plt.title("Average Score Per Park")
         plt.bar(x,y)
