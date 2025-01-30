@@ -91,27 +91,25 @@ def park_and_year():
         next(csv_reader)
         rows = list(csv_reader)
 
-        # New list that will hold the final results
-        result = []
-
-        #The list of parks and locations that are filled with the content inside the Excel file by the loops
+        #Empty lists that will be filled with the content inside the Excel file
         year_and_month = []
         valid_park = []
 
         years = []
         months = []
 
-        #Workflow
+        result = []
+
+        #Appending the 2 empty lists with the data from the excel file
         for y in rows:
             valid_park.append(y[4])
             year_and_month.append(y[2])
 
-        year1 = str(year_and_month)
-
-        for i in year1:
-            year ,month = i.split("-")
-            months.append(month)
-            years.append(year)
+        for dates in year_and_month:
+            if dates != 'missing':
+                y ,m = dates.split('-')
+            years.append(y)
+            months.append(m)
 
         #Takes user input and asks what to input
         park_name = input("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
