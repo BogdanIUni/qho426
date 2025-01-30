@@ -5,9 +5,9 @@ It is likely that most sections will require functions to be placed in this modu
 """
 
 import csv
-from asyncio import wait_for
 import tui
 
+#Variable used in the export function
 info = ""
 
 def reading_data():
@@ -16,7 +16,7 @@ def reading_data():
     with open("data/disneyland_reviews.csv") as file:
         csv_reader = csv.reader(file)
         next(csv_reader)
-        for row in csv_reader:
+        for _ in csv_reader:
             count += 1
         print("\n\nFinished reading the dataset.")
         print(f"There are {count} rows in the dataset.")

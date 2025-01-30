@@ -19,7 +19,7 @@ A_list = ["[A] View Reviews by Park",  "[B] Number of Reviews by Park and Review
 B_list = ["[A] Most Reviewed Park", "[B] Average Scores", "[C] Park Ranking by Nationality", "[D] Most Popular Month by Park", " ", "[X] Back to the Main Menu"]
 C_list = ["[A] TXT", "[B] CSV", "[C] JSON", " ", "[X] Press X to return to the Main Menu or Any Other Key to return to the submenu"]
 
-#List of error or post process messages
+#List of error or post process messages used throughout the program
 end_msg = "\nPress X to return to the Main Menu"
 wrong_location = "This location is not on the list"
 
