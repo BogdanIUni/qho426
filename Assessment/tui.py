@@ -133,8 +133,7 @@ def mainmenu():
             submenu_c()
 
         elif main_menu_input in ["X", "x"]:
-            print("You have chosen the option X - Exit\n")
-            print(f"Program closing in 5 seconds...")
+            print("You have chosen the option X - Exit\nProgram closing in 5 seconds...")
 
             sleep(5)
             exit()
