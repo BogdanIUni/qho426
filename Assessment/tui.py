@@ -23,6 +23,7 @@ C_list = ["[A] TXT", "[B] CSV", "[C] JSON", " ", "[X] Press X to return to the M
 end_msg = "\nPress X to return to the Main Menu"
 wrong_location = "This location is not on the list"
 
+
 def clear():
     sleep(1)
     os.system('cls')

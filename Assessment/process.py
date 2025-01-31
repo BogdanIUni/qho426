@@ -100,7 +100,7 @@ def park_and_year():
 
         result = []
 
-        #Appending the 2 empty lists with the data from the excel file
+        #Appending the 2 empty lists with the data from the Excel file
         for y in rows:
             valid_park.append(y[4])
             year_and_month.append(y[2])
@@ -125,8 +125,10 @@ def park_and_year():
             input()
         elif park_name not in valid_park:
             print(tui.wrong_location)
+            park_and_year()
         elif year not in years:
             print("This year is not on the list")
+            park_and_year()
 
         input()
 
@@ -238,7 +240,7 @@ def export_final(extension, count=0):
     export()
 
     try:
-        with open(f"data/exported_data({count}).{extension}", "x") as txt:
-            txt.write(info)
+        with open(f"data/exported_data({count}).{extension}", "x") as data:
+            data.write(info)
     except FileExistsError:
         return export_final(extension, count + 1)
