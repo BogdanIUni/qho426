@@ -17,7 +17,7 @@ mmenu_list = ["[A] View Data", "[B] Visualise Data", "[C] Export Data", "[X] Exi
 mmenu_valid_options = ["A", "a", "B", "b", "C", "c", "X", "x"]
 A_list = ["[A] View Reviews by Park",  "[B] Number of Reviews by Park and Reviewer Location", "[C] Average Score per year by Park", "[D] Average Score per Park by Reviewer Location", " ", "[X] Back to the Main Menu"]
 B_list = ["[A] Most Reviewed Park", "[B] Average Scores", "[C] Park Ranking by Nationality", "[D] Most Popular Month by Park", " ", "[X] Back to the Main Menu"]
-C_list = ["[A] TXT", "[B] CSV", "[C] JSON", " ", "[X] Press X to return to the Main Menu or Any Other Key to return to the submenu"]
+C_list = ["[A] TXT", "[B] CSV", "[C] JSON", " ", "[X] Press X to return to the Main Menu"]
 
 #List of error or post process messages used throughout the program
 end_msg = "\nPress X to return to the Main Menu"

@@ -130,8 +130,6 @@ def park_and_year():
             print("This year is not on the list")
             park_and_year()
 
-        input()
-
 def avg_score():
     with open("data/disneyland_reviews.csv") as file:
         csv_reader = csv.reader(file)
