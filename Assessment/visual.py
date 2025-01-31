@@ -150,6 +150,67 @@ def rank_by_month():
         next(csv_reader)
         rows = list(csv_reader)
 
+        #Empty lists that will be filled with the content inside the Excel file
+        year_month = []
+        valid_park = []
+
+        years = []
+        months = []
+
+        January = []
+        February = []
+        March = []
+        April = []
+        May = []
+        June = []
+        July = []
+        August = []
+        September = []
+        October = []
+        November = []
+        December = []
+
+        for row in rows:
+            year_month.append(row[2])
+            valid_park.append(row[4])
+
+        for i in year_month:
+            if i != 'missing':
+                year, month = i.split('-')
+                years.append(year)
+                months.append(month)
+
         #Asks the user for input and takes the user input
         park_name = input("Which park would you like to see data on?(Disneyland_Paris, Disneyland_California, Disneyland_HongKong)\n")
 
+        if park_name in valid_park:
+            for row in rows:
+                if row[4] == park_name and row[2].endswith('-1'):
+                    January.append(row[1])
+                if row[4] == park_name and row[2].endswith('-2'):
+                    February.append(row[1])
+                if row[4] == park_name and row[2].endswith('-3'):
+                    March.append(row[1])
+                if row[4] == park_name and row[2].endswith('-4'):
+                    April.append(row[1])
+                if row[4] == park_name and row[2].endswith('-5'):
+                    May.append(row[1])
+                if row[4] == park_name and row[2].endswith('-6'):
+                    June.append(row[1])
+                if row[4] == park_name and row[2].endswith('-7'):
+                    July.append(row[1])
+                if row[4] == park_name and row[2].endswith('-8'):
+                    August.append(row[1])
+                if row[4] == park_name and row[2].endswith('-9'):
+                    September.append(row[1])
+                if row[4] == park_name and row[2].endswith('-10'):
+                    October.append(row[1])
+                if row[4] == park_name and row[2].endswith('-11'):
+                    November.append(row[1])
+                if row[4] == park_name and row[2].endswith('-12'):
+                    December.append(row[1])
+
+
+        print(December)
+
+rank_by_month()
