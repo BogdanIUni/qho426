@@ -9,6 +9,9 @@ Please note that you do not need to read the data file or perform any other such
 
 import os
 from time import sleep
+
+from PIL.ImageFilter import RankFilter
+
 from process import *
 from visual import *
 
@@ -69,8 +72,8 @@ def submenu_b():
         scores_per_park()
     elif sub_menu_input in ["C", "c"]:
         top10_per_park()
-    #elif sub_menu_input in ["D", "d"]:
-        #
+    elif sub_menu_input in ["D", "d"]:
+        rank_by_month()
     elif sub_menu_input in ["X", "x"]:
         backtomainmenu()
     else:

@@ -5,6 +5,9 @@ Any visualisations should be generated via functions in this module.
 import matplotlib.pyplot as plt
 import csv
 
+from Assessment.tui import wrong_location
+
+
 def mostreviewed_park():
     with open("data/disneyland_reviews.csv") as file:
         csv_reader = csv.reader(file)
@@ -135,8 +138,10 @@ def top10_per_park():
 
                x = top10.keys()
                y = top10.values()
-
             plt.title("Top10 Locations per average location review for Disneyland_HongKong")
+
+        # Creating the actual bar chart using matplotlib and getting the average scores
+        # Text rotation needed for better readability
 
         plt.bar(x, y)
         plt.xticks(rotation=45, ha='right')
@@ -151,66 +156,72 @@ def rank_by_month():
         rows = list(csv_reader)
 
         #Empty lists that will be filled with the content inside the Excel file
-        year_month = []
         valid_park = []
 
-        years = []
-        months = []
-
-        January = []
-        February = []
-        March = []
-        April = []
-        May = []
-        June = []
-        July = []
-        August = []
-        September = []
-        October = []
-        November = []
-        December = []
+        january = []
+        february = []
+        march = []
+        april = []
+        may = []
+        june = []
+        july = []
+        august = []
+        september = []
+        october = []
+        november = []
+        december = []
 
         for row in rows:
-            year_month.append(row[2])
             valid_park.append(row[4])
-
-        for i in year_month:
-            if i != 'missing':
-                year, month = i.split('-')
-                years.append(year)
-                months.append(month)
 
         #Asks the user for input and takes the user input
         park_name = input("Which park would you like to see data on?(Disneyland_Paris, Disneyland_California, Disneyland_HongKong)\n")
 
+
+        #First we see if the user's input matches with any valid locations , otherwise it will return an error message and the option will ask again for a valid input
+        #Then for every row where the Branch Name column matches with the user's input we also check to for the characters that the year-month column end in so we can put the review score into their respective lists as integers
         if park_name in valid_park:
             for row in rows:
                 if row[4] == park_name and row[2].endswith('-1'):
-                    January.append(row[1])
+                    january.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-2'):
-                    February.append(row[1])
+                    february.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-3'):
-                    March.append(row[1])
+                    march.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-4'):
-                    April.append(row[1])
+                    april.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-5'):
-                    May.append(row[1])
+                    may.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-6'):
-                    June.append(row[1])
+                    june.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-7'):
-                    July.append(row[1])
+                    july.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-8'):
-                    August.append(row[1])
+                    august.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-9'):
-                    September.append(row[1])
+                    september.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-10'):
-                    October.append(row[1])
+                    october.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-11'):
-                    November.append(row[1])
+                    november.append(int(row[1]))
                 if row[4] == park_name and row[2].endswith('-12'):
-                    December.append(row[1])
+                    december.append(int(row[1]))
 
+            #Creating the x and y variables with their intended values
+            #Text rotation needed for better readability
 
-        print(December)
+            x = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            y = [float(sum(january)/len(january)), float(sum(february)/len(february)), float(sum(march)/len(march)), float(sum(april)/len(april)), float(sum(may)/len(may)), float(sum(june)/len(june)), float(sum(july)/len(july)), float(sum(august)/len(august)), float(sum(september)/len(september)), float(sum(october)/len(october)), float(sum(november)/len(november)), float(sum(december)/len(december))]
 
-rank_by_month()
+        else:
+            print(wrong_location)
+            rank_by_month()
+
+        #Creating the actual bar chart using matplotlib
+        #Text rotation needed for better readability
+
+        plt.title("Average score per month")
+        plt.bar(x, y)
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+        plt.show()
