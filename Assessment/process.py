@@ -36,8 +36,8 @@ def specific_park():
         valid_park = []
 
         #Workflow
-        for p in rows:
-            valid_park.append(p[4])
+        for parks in rows:
+            valid_park.append(parks[4])
 
         if park_name in valid_park:
             for row in rows:
