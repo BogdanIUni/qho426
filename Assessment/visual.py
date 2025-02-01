@@ -4,8 +4,7 @@ Any visualisations should be generated via functions in this module.
 """
 import matplotlib.pyplot as plt
 import csv
-
-from Assessment.tui import wrong_location
+import tui
 
 
 def mostreviewed_park():
