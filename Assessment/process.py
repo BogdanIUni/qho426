@@ -50,7 +50,7 @@ def specific_park():
             print(tui.wrong_location)
             specific_park()
 
-def park_and_loc():
+d ef park_and_loc():
     with open("data/disneyland_reviews.csv") as file:
         csv_reader = csv.reader(file)
         rows = list(csv_reader)
@@ -59,8 +59,9 @@ def park_and_loc():
         park_name = input("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
         loc = input("From what location should the reviewer be ?\n")
 
-        # New list that will hold the final results
+        # New list that will hold the final results and the count of the reviews
         result = []
+        count = 0
 
         #The list of parks and locations that are filled with the content inside the Excel file by the loops
         valid_location = []
@@ -75,7 +76,9 @@ def park_and_loc():
             for row in rows:
                 if row[4] == park_name and row[3] == loc:
                     result.append(row)
-            print(*result, sep= "\n")
+                    count += 1
+            print(*result, sep= "\n" , end="\n\n")
+            print(f"Total number of reviews for {park_name} from the reviewer location {loc} is {count}.")
             print(tui.end_msg)
             input()
         elif park_name not in valid_park:
@@ -112,7 +115,7 @@ def park_and_year():
             months.append(m)
 
         #Takes user input and asks what to input
-        park_name = input("Which park do you wish to see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
+        park_name = input("Which park do you wish to  see the reviews for? [ Disneyland_HongKong, Disneyland_California,  Disneyland_Paris ]\n")
         year = input("Please enter a year:\n")
 
         if park_name in valid_park and year in years:
