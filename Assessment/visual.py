@@ -211,7 +211,8 @@ def rank_by_month():
 
             x = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
             y = [float(sum(january)/len(january)), float(sum(february)/len(february)), float(sum(march)/len(march)), float(sum(april)/len(april)), float(sum(may)/len(may)), float(sum(june)/len(june)), float(sum(july)/len(july)), float(sum(august)/len(august)), float(sum(september)/len(september)), float(sum(october)/len(october)), float(sum(november)/len(november)), float(sum(december)/len(december))]
-         else:
+
+        else:
             print(tui.wrong_location)
             rank_by_month()
 

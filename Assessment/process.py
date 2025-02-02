@@ -50,7 +50,7 @@ def specific_park():
             print(tui.wrong_location)
             specific_park()
 
-d ef park_and_loc():
+def park_and_loc():
     with open("data/disneyland_reviews.csv") as file:
         csv_reader = csv.reader(file)
         rows = list(csv_reader)
