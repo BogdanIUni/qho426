@@ -10,6 +10,7 @@ import tui
 #Variable used in the export function
 info = ""
 
+#Opening the Excel file and counting the number of rows in it
 def reading_data():
     count = 0
 
@@ -21,6 +22,7 @@ def reading_data():
         print("\n\nFinished reading the dataset.")
         print(f"There are {count} rows in the dataset.")
 
+#This function will print a question and store the user input and base on that , it will print all the reviews from that branch
 def specific_park():
     with open("data/disneyland_reviews.csv") as file:
 
@@ -45,11 +47,12 @@ def specific_park():
                     result.append(row)
             print(*result, sep= "\n")
             print(tui.end_msg)
-            input()
         else:
             print(tui.wrong_location)
             specific_park()
 
+#For this function I choose to go a step further and in addition to displaying the number of reviews a park has received from a specific location,
+#it will also display all the reviews from that location for that park
 def park_and_loc():
     with open("data/disneyland_reviews.csv") as file:
         csv_reader = csv.reader(file)
@@ -80,7 +83,6 @@ def park_and_loc():
             print(*result, sep= "\n" , end="\n\n")
             print(f"Total number of reviews for {park_name} from the reviewer location {loc} is {count}.")
             print(tui.end_msg)
-            input()
         elif park_name not in valid_park:
             print(tui.wrong_location)
             park_and_loc()
@@ -108,6 +110,7 @@ def park_and_year():
             valid_park.append(y[4])
             year_and_month.append(y[2])
 
+        #Splitting the elements of the lists from "xxxx-xx" to "xxxx" and "xx" into 2 separate variables and using them to append the empty lists while also error handling
         for dates in year_and_month:
             if dates != 'missing':
                 y ,m = dates.split('-')
@@ -125,12 +128,11 @@ def park_and_year():
 
             print(f"The average rating for the year {year} in the park {park_name} is {sum(result)/len(result)}")
             print(tui.end_msg)
-            input()
         elif park_name not in valid_park:
             print(tui.wrong_location)
             park_and_year()
         elif year not in years:
-            print("This year is not on the list")
+            print(tui.wrong_year)
             park_and_year()
 
 def avg_score():
@@ -139,6 +141,7 @@ def avg_score():
         next(csv_reader)
         rows = list(csv_reader)
 
+        #Empty dictionaries that will be appended later on
         dict1 = {}
         sub_dict = {}
 
@@ -158,7 +161,7 @@ def avg_score():
                 sub_dict[row[4], row[3]] = average_score
 
         print(sub_dict)
-        input()
+        print(tui.end_msg)
 
 def export():
     with open("data/disneyland_reviews.csv") as file:
@@ -166,8 +169,10 @@ def export():
         next(csv_reader)
         rows = list(csv_reader)
 
+    #Calling the variable as global so we can use it through the program
     global info
 
+    #Empty lists and variables with that are 0 , which will be appended later on
     paris_loc_num = []
     california_loc_num = []
     hongkong_loc_num = []
@@ -183,6 +188,7 @@ def export():
     count_hongkong = 0
     positive_hongkong = 0
 
+    #Appending the lists above and increasing the count with their respective values as long as the conditions are met, if there are any
     for i in rows:
         if i[4] == "Disneyland_Paris":
             score_paris.append(i[1])
@@ -206,6 +212,7 @@ def export():
             elif i[3] not in hongkong_loc_num:
                 hongkong_loc_num.append(i[3])
 
+    #Transforming the score lists into integers so we can get the average of them
     for p in range(len(score_paris)):
         score_paris[p] = int(score_paris[p])
     for c in range(len(score_california)):
@@ -217,6 +224,7 @@ def export():
     avg_score_cali = sum(score_california)/len(score_california)
     avg_score_hongkong = sum(score_hongkong)/len(score_hongkong)
 
+    #The actual information for every park being printed out and filled by the variables above
     info = (f"""
         Disneyland_Paris:
             - Number of reviews: {count_paris}
@@ -237,6 +245,7 @@ def export():
             - Number of countries that reviewed the park: {len(hongkong_loc_num)}
         """)
 
+#This functions purpose is reusability of the function above and time saving
 def export_final(extension, count=0):
     export()
 

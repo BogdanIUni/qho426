@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import csv
 import tui
 
-
 def mostreviewed_park():
     with open("data/disneyland_reviews.csv") as file:
         csv_reader = csv.reader(file)
@@ -17,6 +16,7 @@ def mostreviewed_park():
         california_count = 0
         hongkong_count = 0
 
+        #Looping through the elements of the Excel File while checking for specific conditions and appending data in their respective list if those conditions are met
         for row in rows:
             if row[4] == "Disneyland_Paris":
                 paris_count += 1
@@ -25,9 +25,11 @@ def mostreviewed_park():
             elif row[4] == "Disneyland_HongKong":
                 hongkong_count += 1
 
+        #Defining the "pie slices size" and labels
         y = [paris_count, california_count, hongkong_count]
         parks = [f"Disneyland_Paris\n{paris_count}", f"Disneyland_California\n{california_count}", f"Disneyland_HongKong\n{hongkong_count}"]
 
+        # Using matplotlib to display the pie chart
         plt.title("Number of Reviews Per Park")
         plt.pie(y, labels=parks)
         plt.show()
@@ -38,10 +40,12 @@ def scores_per_park():
         next(csv_reader)
         rows = list(csv_reader)
 
+        #Empty lists that will be appended later on
         paris_scores = []
         california_scores = []
         hongkong_scores = []
 
+        #Looping through the elements of the Excel File while checking for specific conditions and appending data in their respective list if those conditions are met
         for row in rows:
             if row[4] == "Disneyland_Paris":
                 paris_scores.append(row[1])
@@ -50,6 +54,7 @@ def scores_per_park():
             elif row[4] == "Disneyland_HongKong":
                 hongkong_scores.append(row[1])
 
+        #Converting the elements in the score lists into integers to be able to calculate the averge score
         for a in range(len(paris_scores)):
             paris_scores[a] = int(paris_scores[a])
         for b in range(len(california_scores)):
@@ -61,9 +66,11 @@ def scores_per_park():
         avg_california = int(sum(california_scores)/len(california_scores))
         avg_hongkong = int(sum(hongkong_scores)/len(hongkong_scores))
 
+        #Defining the x and y coordinates
         x = ["Disneyland_Paris", "Disneyland_California", "Disneyland_HongKong"]
         y = [avg_paris, avg_california, avg_hongkong]
 
+        #Using matplotlib to display the bar chart
         plt.title("Average Score Per Park")
         plt.bar(x,y)
         plt.show()
@@ -78,6 +85,7 @@ def top10_per_park():
         #Asks the user for input and takes the user input
         park_name = input("Which park would you like to see data on?(Disneyland_Paris, Disneyland_California, Disneyland_HongKong)\n")
 
+        #Empty directories that will be filled with data from the Excel sheet
         main_dictionary = {}
         sub_dict = {}
         top10 = {}
@@ -97,7 +105,7 @@ def top10_per_park():
                             score[i] = int(score[i])
                         avg_score = sum(score)/len(score)
                         sub_dict[row[3]] = avg_score
-                        top = dict(sorted(sub_dict.items(), key=lambda x: x[1], reverse=True))
+                        top = dict(sorted(sub_dict.items(), key=lambda d: d[1], reverse=True))
             for i in list(top.items())[0:10]:
                 top10[i[0]] = i[1]
 
@@ -114,7 +122,7 @@ def top10_per_park():
                             score[i] = int(score[i])
                         avg_score = sum(score)/len(score)
                         sub_dict[row[3]] = avg_score
-                        top = dict(sorted(sub_dict.items(), key=lambda x: x[1], reverse=True))
+                        top = dict(sorted(sub_dict.items(), key=lambda d: d[1], reverse=True))
             for i in list(top.items())[0:10]:
                 top10[i[0]] = i[1]
 
@@ -131,7 +139,7 @@ def top10_per_park():
                            score[i] = int(score[i])
                        avg_score = sum(score) / len(score)
                        sub_dict[row[3]] = avg_score
-                       top = dict(sorted(sub_dict.items(), key=lambda x: x[1], reverse=True))
+                       top = dict(sorted(sub_dict.items(), key=lambda d: d[1], reverse=True))
                for i in list(top.items())[0:10]:
                    top10[i[0]] = i[1]
 
@@ -175,7 +183,6 @@ def rank_by_month():
 
         #Asks the user for input and takes the user input
         park_name = input("Which park would you like to see data on?(Disneyland_Paris, Disneyland_California, Disneyland_HongKong)\n")
-
 
         #First we see if the user's input matches with any valid locations , otherwise it will return an error message and the option will ask again for a valid input
         #Then for every row where the Branch Name column matches with the user's input we also check to for the characters that the year-month column end in so we can put the review score into their respective lists as integers
