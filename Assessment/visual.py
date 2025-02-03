@@ -54,7 +54,7 @@ def scores_per_park():
             elif row[4] == "Disneyland_HongKong":
                 hongkong_scores.append(row[1])
 
-        #Converting the elements in the score lists into integers to be able to calculate the averge score
+        #Converting the elements in the score lists into integers to be able to calculate the average score
         for a in range(len(paris_scores)):
             paris_scores[a] = int(paris_scores[a])
         for b in range(len(california_scores)):
